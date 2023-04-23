@@ -1,0 +1,16 @@
+[Unit]
+Description=tgbot Core Daemon
+After=network.target
+
+[Service]
+ExecStartPre=/bin/mkdir -pv /var/log/tgbot
+ExecStart=@CMAKE_INSTALL_PREFIX@/bin/tgbot
+WorkingDirectory=/var/log/tgbot
+
+LimitNOFILE=900000
+Restart=always
+RestartSec=5
+MemoryMax=50G
+
+[Install]
+WantedBy=multi-user.target
