@@ -47,6 +47,8 @@ add_executable(tgbot
 target_link_libraries(tgbot
 	Boost::asio
 	Boost::beast
+	Boost::url
+	Boost::json
 )
 
 if (HAVE_IOCTL_SIOCGIFADDR)
