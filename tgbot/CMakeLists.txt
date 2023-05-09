@@ -47,9 +47,20 @@ add_executable(tgbot
 target_link_libraries(tgbot
 	Boost::asio
 	Boost::beast
-	Boost::url
-	Boost::json
 )
+
+if (MINGW)
+	target_link_libraries(tgbot
+		secur32
+		ws2_32
+		mswsock
+		bcrypt
+		iphlpapi
+	)
+
+	target_compile_options(tgbot PUBLIC "-O2")
+	target_compile_options(tgbot PUBLIC "-Wa,-mbig-obj")
+endif()
 
 if (HAVE_IOCTL_SIOCGIFADDR)
 	target_compile_definitions(tgbot PUBLIC HAVE_IOCTL_SIOCGIFADDR)

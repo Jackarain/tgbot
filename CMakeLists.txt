@@ -340,6 +340,8 @@ link_libraries(
 		Boost::thread
 		Boost::date_time
 		Boost::program_options
+		Boost::json
+		Boost::url
 
 		fmt
 		${OPENSSL_LIBRARIES}
@@ -352,9 +354,11 @@ if (WIN32)
 
 	if (MINGW)
 		link_libraries(
+			secur32
 			ws2_32
 			mswsock
 			bcrypt
+			iphlpapi
 		)
 	else()
 		link_libraries(
